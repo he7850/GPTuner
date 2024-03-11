@@ -213,12 +213,16 @@ class KGTrans(GPT):
 
     def prepare_special_skill(self, knob):
         file_name = f"{knob}.json"
+        print(f"prepare_special_skill for {knob}")
         if file_name not in os.listdir(self.special_path):
             result = self.classify_special_knob(knob)
             if result is not None:
                 json_result = self.extract_json_from_text(result)
                 with open(f"{self.special_path}{file_name}", 'w') as file:
                     json.dump(json_result, file)
+        else:
+            with open(self.special_path + file_name) as fin:
+                json_result = json.load(fin)
         return json_result
 
     def mysql_provide_max(self, knob):

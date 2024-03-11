@@ -1,3 +1,4 @@
-sudo rm /var/lib/postgresql/14/main/postgresql.auto.conf
+rm /var/lib/pgsql/data/postgresql.auto.conf
 sleep 2
-su - postgres -c '/usr/lib/postgresql/14/bin/pg_ctl restart -D /var/lib/postgresql/14/main/ -o "-c config_file=/etc/postgresql/14/main/postgresql.conf"'
+#su - postgres
+su postgres -c 'pg_ctl restart -D /var/lib/pgsql/data/ -o "-c config_file=/var/lib/pgsql/data/postgresql.conf"'
